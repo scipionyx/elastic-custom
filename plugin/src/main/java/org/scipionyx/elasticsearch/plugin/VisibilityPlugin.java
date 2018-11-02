@@ -1,4 +1,12 @@
 package org.scipionyx.elasticsearch.plugin;
 
-public class VisibilityPlugin {
+import org.elasticsearch.plugins.ClusterPlugin;
+import org.elasticsearch.plugins.Plugin;
+
+public class VisibilityPlugin extends Plugin implements ClusterPlugin {
+
+
+
+
+
 }

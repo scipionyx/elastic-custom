@@ -2,20 +2,29 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>parent</artifactId>
         <groupId>scipionyx-elasticsearch-custom</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>plugin</artifactId>
 
     <properties>
-        <elasticsearch.version>5.0.0</elasticsearch.version>
+        <elasticsearch.version>6.4.2</elasticsearch.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.2</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.elasticsearch</groupId>
@@ -23,6 +32,8 @@
             <version>${elasticsearch.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Test -->
 
         <dependency>
             <groupId>org.elasticsearch.test</groupId>
@@ -99,7 +110,6 @@
             </plugin>
 
             <plugin>
-                <!-- we skip surefire to work with randomized testing above -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.9</version>
@@ -112,17 +122,14 @@
                 <groupId>com.carrotsearch.randomizedtesting</groupId>
                 <artifactId>junit4-maven-plugin</artifactId>
                 <version>2.3.3</version>
-
                 <configuration>
                     <assertions enableSystemAssertions="false">
                         <enable/>
                     </assertions>
-
                     <listeners>
                         <report-text/>
                     </listeners>
                 </configuration>
-
                 <executions>
                     <execution>
                         <id>unit-tests</id>

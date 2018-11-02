@@ -8,10 +8,12 @@ import org.elasticsearch.rest.RestRequest;
 
 public class VisibilityRestFilter extends RestFilter {
 
-
     @Override
-    public void process(RestRequest restRequest, RestChannel restChannel, NodeClient nodeClient, RestFilterChain restFilterChain) throws Exception {
-
+    public void process(RestRequest restRequest,
+                        RestChannel restChannel,
+                        NodeClient nodeClient,
+                        RestFilterChain restFilterChain) throws Exception {
 
     }
+
 }
