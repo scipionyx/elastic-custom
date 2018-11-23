@@ -1,16 +1,19 @@
 package org.scipionyx.elasticsearch.plugin;
 
+import com.carrotsearch.randomizedtesting.RandomizedRunner;
 import org.elasticsearch.action.admin.cluster.node.info.NodeInfo;
 import org.elasticsearch.action.admin.cluster.node.info.NodesInfoResponse;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.plugins.PluginInfo;
 import org.elasticsearch.test.ESIntegTestCase;
+import org.junit.runner.RunWith;
 
 import java.util.Collection;
 import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
 
+//@RunWith(RandomizedRunner.class)
 public class VisibilityPluginTest  extends ESIntegTestCase {
 
     @Override

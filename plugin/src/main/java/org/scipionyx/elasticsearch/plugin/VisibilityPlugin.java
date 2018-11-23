@@ -7,6 +7,4 @@ public class VisibilityPlugin extends Plugin implements ClusterPlugin {
 
 
 
-
-
 }
