@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 *.iml
+*.zip
 out
 gen### Java template
 # Compiled class file

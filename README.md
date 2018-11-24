@@ -4,6 +4,9 @@ https://search-guard.com/company/
 
 http://david.pilato.fr/blog/2016/07/27/creating-a-plugin-for-elasticsearch-5-dot-0-using-maven/
 
+http://david.pilato.fr/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsearch-updated-for-ga/
+
+https://amsterdam.luminis.eu/2017/01/31/creating-elasticsearch-plugin-basics/
 
 # Jar Hell
 In order to run tests directly from IDEA 2017.2 and above, it is required to disable the IDEA run launcher in order to avoid idea_rt.jar causing "jar hell". 

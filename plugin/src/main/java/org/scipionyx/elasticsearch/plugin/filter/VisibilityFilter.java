@@ -1,27 +1,21 @@
 package org.scipionyx.elasticsearch.plugin.filter;
 
-import org.elasticsearch.action.ActionListener;
-import org.elasticsearch.action.ActionRequest;
-import org.elasticsearch.action.ActionResponse;
-import org.elasticsearch.action.support.ActionFilter;
-import org.elasticsearch.action.support.ActionFilterChain;
-import org.elasticsearch.tasks.Task;
+import lombok.extern.java.Log;
+import org.apache.lucene.analysis.FilteringTokenFilter;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 
-public class VisibilityFilter implements ActionFilter {
+@Log
+public class VisibilityFilter extends FilteringTokenFilter {
 
-    @Override
-    public int order() {
-        return 0;
+    private final CharTermAttribute termAtt = addAttribute(CharTermAttribute.class);
+
+    public VisibilityFilter(TokenStream in) {
+        super(in);
     }
 
     @Override
-    public <Request extends ActionRequest,
-            Response extends ActionResponse> void apply(Task task,
-                                                        String s,
-                                                        Request request,
-                                                        ActionListener<Response> actionListener,
-                                                        ActionFilterChain<Request, Response> actionFilterChain) {
-
+    protected boolean accept() {
+        return termAtt.toString().equals("jettro");
     }
-
 }
