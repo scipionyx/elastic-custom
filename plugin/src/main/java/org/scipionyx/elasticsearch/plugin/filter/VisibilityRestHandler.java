@@ -87,7 +87,7 @@ public class VisibilityRestHandler extends BaseRestHandler {
 
         @Override
         public XContentBuilder toXContent(XContentBuilder builder, Params params) throws IOException {
-            return builder.field("message", "Plugin to support the Jettro index.");
+            return builder.field("message", "Plugin to support the Visibilty index.");
         }
 
     }

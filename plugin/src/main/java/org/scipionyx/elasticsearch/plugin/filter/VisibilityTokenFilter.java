@@ -6,16 +6,17 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 
 @Log
-public class VisibilityFilter extends FilteringTokenFilter {
+public class VisibilityTokenFilter extends FilteringTokenFilter {
 
     private final CharTermAttribute termAtt = addAttribute(CharTermAttribute.class);
 
-    public VisibilityFilter(TokenStream in) {
+    public VisibilityTokenFilter(TokenStream in) {
         super(in);
     }
 
     @Override
     protected boolean accept() {
-        return termAtt.toString().equals("jettro");
+        log.info("Running Accept Method");
+        return termAtt.toString().equals("renato");
     }
 }

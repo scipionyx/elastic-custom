@@ -8,6 +8,9 @@ http://david.pilato.fr/blog/2016/10/19/adding-a-new-rest-endpoint-to-elasticsear
 
 https://amsterdam.luminis.eu/2017/01/31/creating-elasticsearch-plugin-basics/
 
+https://github.com/sscarduzio/elasticsearch-readonlyrest-plugin/blob/master/es63x/src/main/java/tech/beshu/ror/es/security/RoleIndexSearcherWrapper.java
+
+
 # Jar Hell
 In order to run tests directly from IDEA 2017.2 and above, it is required to disable the IDEA run launcher in order to avoid idea_rt.jar causing "jar hell". 
 This can be achieved by adding the ``-Didea.no.launcher=true`` JVM option. 
