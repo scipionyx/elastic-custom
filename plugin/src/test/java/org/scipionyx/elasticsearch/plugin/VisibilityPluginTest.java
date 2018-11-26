@@ -1,7 +1,6 @@
 package org.scipionyx.elasticsearch.plugin;
 
 import com.carrotsearch.randomizedtesting.RandomizedRunner;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.Before;
@@ -44,10 +43,6 @@ public class VisibilityPluginTest extends ESIntegTestCase {
         ensureGreen();
     }
 
-
-    /**
-     * Tests if the plugin was loaded
-     */
     public void testPluginIsLoaded() {
         client().
                 admin().
@@ -63,25 +58,6 @@ public class VisibilityPluginTest extends ESIntegTestCase {
                         anyMatch(pluginInfo -> pluginInfo.
                                 getName().
                                 equals(VisibilityPlugin.class.getName())), is(true)));
-    }
-
-    public void testGetAccounts() {
-        assertThat(get("jpmc",
-                "account",
-                "1").
-                isExists(), is(true));
-        assertThat(get("jpmc",
-                "account",
-                "2").
-                isExists(), is(true));
-        assertThat(get("jpmc",
-                "account",
-                "3").
-                isExists(), is(false));
-        assertThat(get("jpmc",
-                "account",
-                "4").
-                isExists(), is(false));
     }
 
 }

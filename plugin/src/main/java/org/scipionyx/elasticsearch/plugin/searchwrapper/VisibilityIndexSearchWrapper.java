@@ -57,8 +57,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
     }
 
     @Override
-    protected IndexSearcher wrap(IndexSearcher searcher) throws IOException {
-        log.info("IndexSearcher - wrap:");
+    protected IndexSearcher wrap(IndexSearcher searcher) {
         return searcher;
     }
 

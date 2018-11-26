@@ -29,16 +29,10 @@ import org.elasticsearch.ExceptionsHelper;
 
 import java.io.IOException;
 
-// Code based on
-// https://stackoverflow.com/questions/40949286/apply-lucene-query-on-bits
-// https://github.com/apache/lucene-solr/blob/master/lucene/misc/src/java/org/apache/lucene/index/PKIndexSplitter.java#L127-L170
-
-/*
- * @author Datasweet <contact@datasweet.fr>
- */
 public final class DocumentFilterReader extends FilterLeafReader {
 
     private final Bits liveDocs;
+
     private final int numDocs;
 
     private DocumentFilterReader(LeafReader reader, Query query) throws IOException {
@@ -47,14 +41,12 @@ public final class DocumentFilterReader extends FilterLeafReader {
         searcher.setQueryCache(null);
         final boolean needsScores = false;
         final Weight preserveWeight = searcher.createWeight(query, needsScores, 0);
-
         final int maxDoc = this.in.maxDoc();
         final FixedBitSet bits = new FixedBitSet(maxDoc);
         final Scorer preserveScorer = preserveWeight.scorer(this.getContext());
         if (preserveScorer != null) {
             bits.or(preserveScorer.iterator());
         }
-
         if (in.hasDeletions()) {
             final Bits oldLiveDocs = in.getLiveDocs();
             assert oldLiveDocs != null;
@@ -65,12 +57,11 @@ public final class DocumentFilterReader extends FilterLeafReader {
                 }
             }
         }
-
         this.liveDocs = bits;
         this.numDocs = bits.cardinality();
     }
 
-    public static DocumentFilterDirectoryReader wrap(DirectoryReader in, Query filterQuery) throws IOException {
+    static DocumentFilterDirectoryReader wrap(DirectoryReader in, Query filterQuery) throws IOException {
         return new DocumentFilterDirectoryReader(in, filterQuery);
     }
 
@@ -95,9 +86,10 @@ public final class DocumentFilterReader extends FilterLeafReader {
     }
 
     private static final class DocumentFilterDirectorySubReader extends FilterDirectoryReader.SubReaderWrapper {
+
         private final Query query;
 
-        public DocumentFilterDirectorySubReader(Query filterQuery) {
+        DocumentFilterDirectorySubReader(Query filterQuery) {
             this.query = filterQuery;
         }
 
@@ -109,9 +101,11 @@ public final class DocumentFilterReader extends FilterLeafReader {
                 throw ExceptionsHelper.convertToElastic(e);
             }
         }
+
     }
 
     public static final class DocumentFilterDirectoryReader extends FilterDirectoryReader {
+
         private final Query filterQuery;
 
         DocumentFilterDirectoryReader(DirectoryReader in, Query filterQuery) throws IOException {

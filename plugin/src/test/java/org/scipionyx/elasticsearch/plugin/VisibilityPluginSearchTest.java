@@ -1,7 +1,6 @@
 package org.scipionyx.elasticsearch.plugin;
 
 import com.carrotsearch.randomizedtesting.RandomizedRunner;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.Before;
@@ -31,15 +30,20 @@ public class VisibilityPluginSearchTest extends ESIntegTestCase {
     }
 
     private void setUpTestData() throws Exception {
-        index("jpmc", "account", "1", jsonBuilder().startObject().
-                field("number", "1").
-                field("name", "account name 1").
+        index("jpmc", "account", "11", jsonBuilder().startObject().
+                field("number", "11").
+                field("name", "account name 11").
                 field("eci", "10").
                 endObject());
-        index("jpmc", "account", "2", jsonBuilder().startObject().
-                field("number", "2").
-                field("name", "account name 2").
-                field("eci", "X1").
+        index("jpmc", "account", "12", jsonBuilder().startObject().
+                field("number", "12").
+                field("name", "account name 12").
+                field("eci", "10").
+                endObject());
+        index("jpmc", "account", "21", jsonBuilder().startObject().
+                field("number", "21").
+                field("name", "account name 21").
+                field("eci", "20").
                 endObject());
         ensureGreen();
     }
@@ -47,15 +51,15 @@ public class VisibilityPluginSearchTest extends ESIntegTestCase {
     public void testSearchAccounts() {
         assertThat(get("jpmc",
                 "account",
-                "1").
+                "11").
                 isExists(), is(true));
         assertThat(get("jpmc",
                 "account",
-                "2").
+                "12").
                 isExists(), is(true));
         assertThat(get("jpmc",
                 "account",
-                "3").
+                "21").
                 isExists(), is(false));
         assertThat(get("jpmc",
                 "account",
