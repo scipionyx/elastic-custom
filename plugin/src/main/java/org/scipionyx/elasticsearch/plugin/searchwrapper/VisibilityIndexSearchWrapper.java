@@ -40,20 +40,19 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
 
     @Override
     protected DirectoryReader wrap(DirectoryReader reader) throws IOException {
-        ShardId shardId = ShardUtils.extractShardId(reader);
-        BooleanQuery.Builder boolQuery = new BooleanQuery.Builder();
-        boolQuery.setMinimumNumberShouldMatch(1);
-        QueryShardContext queryShardContext = this.queryShardContextProvider.apply(shardId);
-        XContentParser parser = JsonXContent.
+        final QueryShardContext queryShardContext = this.queryShardContextProvider.apply(ShardUtils.extractShardId(reader));
+        final XContentParser parser = JsonXContent.
                 jsonXContent.
                 createParser(queryShardContext.getXContentRegistry(),
                         LoggingDeprecationHandler.INSTANCE,
                         Class.class.getResourceAsStream("/queries/match_eci.json"));
-        boolQuery.add(queryShardContext.
-                toFilter(queryShardContext.
-                        parseInnerQueryBuilder(parser)).query(), BooleanClause.Occur.SHOULD);
         return DocumentFilterReader.
-                wrap(reader, new ConstantScoreQuery(boolQuery.build()));
+                wrap(reader, new ConstantScoreQuery(new BooleanQuery.
+                        Builder().
+                        setMinimumNumberShouldMatch(1).
+                        add(queryShardContext.
+                                toFilter(queryShardContext.
+                                        parseInnerQueryBuilder(parser)).query(), BooleanClause.Occur.SHOULD).build()));
     }
 
     @Override
