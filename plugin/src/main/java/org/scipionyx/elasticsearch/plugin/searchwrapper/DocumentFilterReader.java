@@ -17,6 +17,7 @@
 
 package org.scipionyx.elasticsearch.plugin.searchwrapper;
 
+import lombok.Getter;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.FilterDirectoryReader;
 import org.apache.lucene.index.FilterLeafReader;
@@ -31,8 +32,10 @@ import java.io.IOException;
 
 public final class DocumentFilterReader extends FilterLeafReader {
 
+    @Getter
     private final Bits liveDocs;
 
+    @Getter
     private final int numDocs;
 
     private DocumentFilterReader(LeafReader reader, Query query) throws IOException {
@@ -63,16 +66,6 @@ public final class DocumentFilterReader extends FilterLeafReader {
 
     static DocumentFilterDirectoryReader wrap(DirectoryReader in, Query filterQuery) throws IOException {
         return new DocumentFilterDirectoryReader(in, filterQuery);
-    }
-
-    @Override
-    public int numDocs() {
-        return numDocs;
-    }
-
-    @Override
-    public Bits getLiveDocs() {
-        return liveDocs;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
         final XContentParser parser = JsonXContent.jsonXContent.
                 createParser(queryShardContext.getXContentRegistry(),
                         LoggingDeprecationHandler.INSTANCE,
-                        Class.class.getResourceAsStream("/queries/match_eci.json"));
+                        this.getClass().getResourceAsStream("/queries/match_eci.json"));
         return DocumentFilterReader.wrap(reader,
                 new ConstantScoreQuery(new BooleanQuery.
                         Builder().
