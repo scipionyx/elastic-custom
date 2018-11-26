@@ -1,0 +1,25 @@
+[
+  {
+    "query": {
+      "query_string": {
+        "default_field": "content",
+        "query": "(new york city) OR (big apple)"
+      }
+    }
+  },
+  {
+    "query": {
+      "match_all": {}
+    }
+  },
+  {
+    "query": {
+      "query_string": {
+        "fields": [
+          "id"
+        ],
+        "query": "1"
+      }
+    }
+  }
+]

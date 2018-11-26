@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(RandomizedRunner.class)
 @ESIntegTestCase.ClusterScope(scope = ESIntegTestCase.Scope.SUITE)
-public class VisibilityPluginTest extends ESIntegTestCase {
+public class VisibilityPluginSearchTest extends ESIntegTestCase {
 
     @Override
     protected Collection<Class<? extends Plugin>> nodePlugins() {
@@ -44,28 +44,7 @@ public class VisibilityPluginTest extends ESIntegTestCase {
         ensureGreen();
     }
 
-
-    /**
-     * Tests if the plugin was loaded
-     */
-    public void testPluginIsLoaded() {
-        client().
-                admin().
-                cluster().
-                prepareNodesInfo().
-                setPlugins(true).
-                get().
-                getNodes().
-                forEach(nodeInfo -> assertThat(nodeInfo.
-                        getPlugins().
-                        getPluginInfos().
-                        stream().
-                        anyMatch(pluginInfo -> pluginInfo.
-                                getName().
-                                equals(VisibilityPlugin.class.getName())), is(true)));
-    }
-
-    public void testGetAccounts() {
+    public void testSearchAccounts() {
         assertThat(get("jpmc",
                 "account",
                 "1").

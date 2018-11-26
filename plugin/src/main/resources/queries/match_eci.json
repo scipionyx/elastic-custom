@@ -1,0 +1,8 @@
+{
+  "query_string": {
+    "fields": [
+      "eci"
+    ],
+    "query": "10"
+  }
+}
