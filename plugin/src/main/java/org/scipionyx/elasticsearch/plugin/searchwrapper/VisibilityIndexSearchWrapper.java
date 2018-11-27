@@ -10,6 +10,7 @@ import org.elasticsearch.common.util.concurrent.ThreadContext;
 import org.elasticsearch.common.xcontent.LoggingDeprecationHandler;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
+import org.elasticsearch.index.IndexModule;
 import org.elasticsearch.index.IndexService;
 import org.elasticsearch.index.query.QueryShardContext;
 import org.elasticsearch.index.shard.IndexSearcherWrapper;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.util.function.Function;
 
 @Log
-public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
+public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper implements IndexModule.IndexSearcherWrapperFactory {
 
     private final IndexService indexService;
 
@@ -59,4 +60,8 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
         return searcher;
     }
 
+    @Override
+    public IndexSearcherWrapper newWrapper(IndexService indexService) {
+        return new VisibilityIndexSearchWrapper(indexService);
+    }
 }

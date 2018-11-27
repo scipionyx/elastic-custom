@@ -1,6 +1,7 @@
 package org.scipionyx.elasticsearch.plugin;
 
 import com.carrotsearch.randomizedtesting.RandomizedRunner;
+import org.apache.lucene.index.IndexReader;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.Before;
@@ -65,6 +66,7 @@ public class VisibilityPluginSearchTest extends ESIntegTestCase {
                 "account",
                 "4").
                 isExists(), is(false));
+        //newSearcher()
     }
 
 }
