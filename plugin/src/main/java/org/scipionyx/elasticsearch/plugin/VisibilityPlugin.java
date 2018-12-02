@@ -17,7 +17,12 @@ public class VisibilityPlugin extends Plugin implements
     @Override
     public void onIndexModule(IndexModule indexModule) {
         log.info("Adding Visibility Wrapper for Index: " + indexModule.getIndex().getName());
-        indexModule.setSearcherWrapper(VisibilityIndexSearchWrapper::new);
+        try {
+            indexModule.setSearcherWrapper(VisibilityIndexSearchWrapper::new);
+        } catch (final Exception e) {
+            log.info("Error adding Search Wrapper to Index: " + indexModule.getIndex().getName());
+        }
+
     }
 
 }
