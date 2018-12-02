@@ -26,3 +26,8 @@ The Elasticsearch codebase makes heavy use of Java asserts and the test runner r
 For IntelliJ, go to Run->Edit Configurations...->Defaults->JUnit->VM options and input ``-ea``.
 
 https://github.com/elastic/elasticsearch/blob/master/CONTRIBUTING.md
+
+# Elasticsearch API
+
+https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-docs-index.html#java-docs-index-generate-helpers
+

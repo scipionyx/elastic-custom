@@ -82,7 +82,7 @@ public final class DocumentFilterReader extends FilterLeafReader {
 
         private final Query query;
 
-        DocumentFilterDirectorySubReader(Query filterQuery) {
+        private DocumentFilterDirectorySubReader(Query filterQuery) {
             this.query = filterQuery;
         }
 
