@@ -15,8 +15,6 @@ import reactor.core.publisher.Flux;
 
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -33,7 +31,7 @@ public class AccountRepositoryTest {
         var stopWatch = new StopWatch();
         stopWatch.start();
         AtomicLong counter = new AtomicLong();
-        Flux.range(0,size).
+        Flux.range(0, size).
                 map(i -> Account.
                         builder().
                         eci("ECI" + new Random().nextInt(2_000)).
@@ -67,7 +65,7 @@ public class AccountRepositoryTest {
     }
 
     @Test
-    public void testList(){
+    public void testList() {
         Flux.
                 fromIterable(repository.findAll()).
                 subscribe(System.out::println);
