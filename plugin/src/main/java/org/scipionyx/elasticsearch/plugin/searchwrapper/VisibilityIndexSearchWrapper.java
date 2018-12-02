@@ -45,6 +45,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
 
     @Override
     public DirectoryReader wrap(DirectoryReader reader) throws IOException {
+        log.info("Adding Boolean Query wrapping the regular execution - Directory");
         final QueryShardContext queryShardContext = this.queryShardContextProvider.apply(ShardUtils.extractShardId(reader));
         final XContentParser parser = JsonXContent.
                 jsonXContent.
@@ -67,6 +68,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
 
     @Override
     public IndexSearcher wrap(IndexSearcher searcher) {
+        log.info("Adding Boolean Query wrapping the regular execution - IndexSearcher");
         return searcher;
     }
 
