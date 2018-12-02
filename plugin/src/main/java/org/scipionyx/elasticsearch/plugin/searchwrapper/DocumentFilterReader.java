@@ -78,7 +78,7 @@ public final class DocumentFilterReader extends FilterLeafReader {
         return this.in.getReaderCacheHelper();
     }
 
-    private static final class DocumentFilterDirectorySubReader extends FilterDirectoryReader.SubReaderWrapper {
+    public static final class DocumentFilterDirectorySubReader extends FilterDirectoryReader.SubReaderWrapper {
 
         private final Query query;
 

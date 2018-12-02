@@ -1,6 +1,7 @@
 package org.scipionyx.elasticsearch.plugin.searchwrapper;
 
 import lombok.extern.java.Log;
+import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.scipionyx.elasticsearch.plugin.searchwrapper.QueryWrapperBuilder;
@@ -12,9 +13,8 @@ import java.util.Collections;
 import static org.junit.Assert.assertEquals;
 
 @Log
-public class QueryWrapperBuilderTest {
+public class QueryWrapperBuilderTest extends ESIntegTestCase {
 
-    @Test
     public void test() throws IOException {
         Assert.assertEquals("{\"query_string\":{\"fields\":[\"eci\"],\"query\":\"1 2 3 4\"}}",
                 new QueryWrapperBuilder().

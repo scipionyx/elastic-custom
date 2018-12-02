@@ -44,7 +44,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
     }
 
     @Override
-    protected DirectoryReader wrap(DirectoryReader reader) throws IOException {
+    public DirectoryReader wrap(DirectoryReader reader) throws IOException {
         final QueryShardContext queryShardContext = this.queryShardContextProvider.apply(ShardUtils.extractShardId(reader));
         final XContentParser parser = JsonXContent.
                 jsonXContent.
@@ -66,7 +66,7 @@ public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
     }
 
     @Override
-    protected IndexSearcher wrap(IndexSearcher searcher) {
+    public IndexSearcher wrap(IndexSearcher searcher) {
         return searcher;
     }
 
