@@ -10,5 +10,5 @@ spring:
 
 elasticsearch:
   host: localhost
-  port: 32774
+  port: 32780
   clustername: docker-cluster

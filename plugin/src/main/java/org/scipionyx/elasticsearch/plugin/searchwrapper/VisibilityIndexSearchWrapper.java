@@ -24,17 +24,17 @@ import java.util.function.Function;
 @Log
 public class VisibilityIndexSearchWrapper extends IndexSearcherWrapper {
 
-    private final IndexService indexService;
+    //private final IndexService indexService;
 
-    private final ThreadContext threadContext;
+    //private final ThreadContext threadContext;
 
     private final Function<ShardId, QueryShardContext> queryShardContextProvider;
 
     private final QueryWrapperBuilder queryWrapperBuilder;
 
     public VisibilityIndexSearchWrapper(IndexService indexService) {
-        this.indexService = indexService;
-        this.threadContext = indexService.getThreadPool().getThreadContext();
+        //this.indexService = indexService;
+        //this.threadContext = indexService.getThreadPool().getThreadContext();
         this.queryShardContextProvider = shardId -> indexService.
                 newQueryShardContext(shardId.id(),
                         null,
